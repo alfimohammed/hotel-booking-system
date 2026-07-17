@@ -1,4 +1,4 @@
-package com.alfi.hotel_booking_system;
+package com.alfi.hotelbookingsystem;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
