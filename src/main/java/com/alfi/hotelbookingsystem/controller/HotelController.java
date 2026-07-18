@@ -1,5 +1,7 @@
 package com.alfi.hotelbookingsystem.controller;
 
+import com.alfi.hotelbookingsystem.dto.HotelRequestDTO;
+import com.alfi.hotelbookingsystem.dto.HotelResponseDTO;
 import com.alfi.hotelbookingsystem.model.Hotel;
 import com.alfi.hotelbookingsystem.service.HotelService;
 
@@ -20,9 +22,9 @@ public class HotelController {
     }
 
     @PostMapping
-    public Hotel addHotel(@RequestBody Hotel hotel) {
-        return hotelService.addHotel(hotel);
-    }
+    public HotelResponseDTO addHotel(@RequestBody HotelRequestDTO request) {
+    return hotelService.addHotel(request);
+}
 
     @GetMapping
     public List<Hotel> getAllHotels() {
