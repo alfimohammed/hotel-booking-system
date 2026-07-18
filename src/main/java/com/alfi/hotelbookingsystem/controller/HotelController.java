@@ -53,4 +53,16 @@ public ResponseEntity<Hotel> updateHotel(@PathVariable String id,
         return ResponseEntity.notFound().build();
     }
 }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteHotel(@PathVariable String id) {
+
+    boolean deleted = hotelService.deleteHotel(id);
+
+    if (deleted) {
+        return ResponseEntity.noContent().build();
+    } else {
+        return ResponseEntity.notFound().build();
+    }
+  }
 }

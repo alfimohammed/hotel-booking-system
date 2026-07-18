@@ -42,4 +42,13 @@ public class HotelService {
 
     return Optional.empty();
 }
+    public boolean deleteHotel(String id) {
+
+    if (hotelRepository.existsById(id)) {
+        hotelRepository.deleteById(id);
+        return true;
+    }
+
+    return false;
+}
 }
