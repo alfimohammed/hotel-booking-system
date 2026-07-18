@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -41,4 +40,17 @@ public class HotelController {
         return ResponseEntity.notFound().build();
     }
   }
+
+  @PutMapping("/{id}")
+public ResponseEntity<Hotel> updateHotel(@PathVariable String id,
+                                         @RequestBody Hotel hotel) {
+
+    Optional<Hotel> updatedHotel = hotelService.updateHotel(id, hotel);
+
+    if (updatedHotel.isPresent()) {
+        return ResponseEntity.ok(updatedHotel.get());
+    } else {
+        return ResponseEntity.notFound().build();
+    }
+}
 }

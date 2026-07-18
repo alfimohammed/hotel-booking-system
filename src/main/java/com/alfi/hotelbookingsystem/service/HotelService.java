@@ -27,5 +27,19 @@ public class HotelService {
 
     public Optional<Hotel> getHotelById(String id) {
     return hotelRepository.findById(id);
+    }
+
+    public Optional<Hotel> updateHotel(String id, Hotel updatedHotel) {
+
+    Optional<Hotel> existingHotel = hotelRepository.findById(id);
+
+    if (existingHotel.isPresent()) {
+
+        updatedHotel.setId(id);
+
+        return Optional.of(hotelRepository.save(updatedHotel));
+    }
+
+    return Optional.empty();
 }
 }
