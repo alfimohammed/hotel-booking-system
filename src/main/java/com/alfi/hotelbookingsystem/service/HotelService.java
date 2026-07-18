@@ -4,6 +4,7 @@ import com.alfi.hotelbookingsystem.model.Hotel;
 import com.alfi.hotelbookingsystem.repository.HotelRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -23,4 +24,8 @@ public class HotelService {
     public List<Hotel> getAllHotels() {
     return hotelRepository.findAll();
     }
+
+    public Optional<Hotel> getHotelById(String id) {
+    return hotelRepository.findById(id);
+}
 }
