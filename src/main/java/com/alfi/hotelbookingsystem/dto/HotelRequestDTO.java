@@ -1,16 +1,48 @@
 package com.alfi.hotelbookingsystem.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
+
 public class HotelRequestDTO {
 
+    @NotBlank(message = "Hotel name is required")
     private String name;
+
+    @NotBlank(message = "City is required")
     private String city;
+
+    @NotBlank(message = "Address is required")
     private String address;
+
+    @NotBlank(message = "Description is required")
     private String description;
+
+    @NotNull(message = "Rating is required")
+    @Min(value = 1, message = "Rating must be at least 1")
+    @Max(value = 5, message = "Rating cannot exceed 5")
     private Double rating;
+
+    @NotNull(message = "Price is required")
+    @Positive(message = "Price must be greater than 0")
     private Double pricePerNight;
+
+    @NotBlank(message = "Contact number is required")
     private String contactNumber;
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format")
     private String email;
+
+    @NotNull(message = "Availability is required")
     private Boolean available;
+
+     public HotelRequestDTO() {
+    }
 
     // Getters and Setters
 

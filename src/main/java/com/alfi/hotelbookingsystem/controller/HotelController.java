@@ -5,6 +5,8 @@ import com.alfi.hotelbookingsystem.dto.HotelResponseDTO;
 import com.alfi.hotelbookingsystem.model.Hotel;
 import com.alfi.hotelbookingsystem.service.HotelService;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +24,13 @@ public class HotelController {
     }
 
     @PostMapping
-    public HotelResponseDTO addHotel(@RequestBody HotelRequestDTO request) {
-    return hotelService.addHotel(request);
+    public HotelResponseDTO addHotel(@Valid @RequestBody HotelRequestDTO request) {
+        return hotelService.addHotel(request);
+    }
+
+    @PostMapping("/test")
+public String testPost() {
+    return "POST is working";
 }
 
     @GetMapping
