@@ -4,6 +4,8 @@ import com.alfi.hotelbookingsystem.dto.HotelRequestDTO;
 import com.alfi.hotelbookingsystem.dto.HotelResponseDTO;
 import com.alfi.hotelbookingsystem.model.Hotel;
 import com.alfi.hotelbookingsystem.service.HotelService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import jakarta.validation.Valid;
 
@@ -14,6 +16,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(
+    name = "Hotel Management",
+    description = "APIs for managing hotels"
+)
 @RestController
 @RequestMapping("/api/hotels")
 public class HotelController {
@@ -24,6 +30,10 @@ public class HotelController {
         this.hotelService = hotelService;
     }
 
+    @Operation(
+    summary = "Create a hotel",
+    description = "Creates a new hotel in the database"
+    )
     @PostMapping
 public ResponseEntity<HotelResponseDTO> addHotel(
         @Valid @RequestBody HotelRequestDTO request) {
@@ -33,11 +43,10 @@ public ResponseEntity<HotelResponseDTO> addHotel(
     return ResponseEntity.status(HttpStatus.CREATED).body(response);
 }
 
-    @PostMapping("/test")
-public String testPost() {
-    return "POST is working";
-}
-
+    @Operation(
+    summary = "Get all hotels",
+    description = "Returns a list of all available hotels"
+    )
     @GetMapping
     public List<Hotel> getAllHotels() {
     return hotelService.getAllHotels();
