@@ -70,7 +70,10 @@ public class HotelService {
     public Hotel getHotelById(String id) {
 
     return hotelRepository.findById(id)
-            .orElseThrow(() -> new HotelNotFoundException(id));
+            .orElseThrow(() -> {
+                logger.warn("Hotel not found with ID: {}", id);
+                return new HotelNotFoundException(id);
+            });
 }
 
     public Optional<Hotel> updateHotel(String id, Hotel updatedHotel) {
