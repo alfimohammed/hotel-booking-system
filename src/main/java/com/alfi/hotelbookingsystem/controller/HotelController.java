@@ -39,16 +39,12 @@ public String testPost() {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Hotel> getHotelById(@PathVariable String id) {
+public ResponseEntity<Hotel> getHotelById(@PathVariable String id) {
 
-    Optional<Hotel> hotel = hotelService.getHotelById(id);
+    Hotel hotel = hotelService.getHotelById(id);
 
-    if (hotel.isPresent()) {
-        return ResponseEntity.ok(hotel.get());
-    } else {
-        return ResponseEntity.notFound().build();
-    }
-  }
+    return ResponseEntity.ok(hotel);
+}
 
   @PutMapping("/{id}")
 public ResponseEntity<Hotel> updateHotel(@PathVariable String id,

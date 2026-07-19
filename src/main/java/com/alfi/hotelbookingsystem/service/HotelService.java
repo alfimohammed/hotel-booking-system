@@ -5,6 +5,7 @@ import com.alfi.hotelbookingsystem.dto.HotelResponseDTO;
 
 import com.alfi.hotelbookingsystem.model.Hotel;
 import com.alfi.hotelbookingsystem.repository.HotelRepository;
+import com.alfi.hotelbookingsystem.exception.HotelNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,9 +57,11 @@ public class HotelService {
     return hotelRepository.findAll();
     }
 
-    public Optional<Hotel> getHotelById(String id) {
-    return hotelRepository.findById(id);
-    }
+    public Hotel getHotelById(String id) {
+
+    return hotelRepository.findById(id)
+            .orElseThrow(() -> new HotelNotFoundException(id));
+}
 
     public Optional<Hotel> updateHotel(String id, Hotel updatedHotel) {
 
