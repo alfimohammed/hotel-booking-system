@@ -10,10 +10,16 @@ import com.alfi.hotelbookingsystem.exception.HotelNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Service;
 
 @Service
 public class HotelService {
+
+    private static final Logger logger =
+        LoggerFactory.getLogger(HotelService.class);
 
     private final HotelRepository hotelRepository;
 
@@ -35,7 +41,11 @@ public class HotelService {
     hotel.setEmail(request.getEmail());
     hotel.setAvailable(request.getAvailable());
 
+    logger.info("Creating hotel: {}", request.getName());
+
     Hotel savedHotel = hotelRepository.save(hotel);
+
+    logger.info("Hotel created with ID: {}", savedHotel.getId());
 
     HotelResponseDTO response = new HotelResponseDTO();
 
